@@ -46,7 +46,7 @@ char* newTemp(){
 %%
 
 expr:
-    expr_high { $$ = strdup($1); }
+    expr_high { $$ = $1; }
     | '-' expr %prec UMINUS { fprintf(interFile, "%s = - %s\n", newTemp(), $2); $$ = currTemp; free($2);}
     | expr '+' expr_high { fprintf(interFile, "%s = %s + %s\n", newTemp(), $1, $3); $$ = currTemp; free($1); free($3);}
     | expr '-' expr_high { fprintf(interFile, "%s = %s - %s\n", newTemp(), $1, $3); $$ = currTemp; free($1); free($3);}
@@ -72,7 +72,7 @@ ifstmts:
     | ELIF condn ':' ifstmts
 
 ifelse:
-    IF condn ':' ifstmts FI
+    IF condn ':' ifstmts FI {}
     | IF condn ':' ifstmts ELSE stmts FI
 
 
@@ -83,7 +83,7 @@ switch_cases:
 assg_lhs: ID { $$ = strdup($1); }
 
 stmt:
-    assg_lhs '=' expr {}
+    assg_lhs '=' expr { fprintf(interFile, "%s = %s\n", $1, $3); /*free($1);*/ free($3);}
     | ifelse
     | SWITCH ID DO switch_cases DONE
     | WHILE condn DO stmts DONE

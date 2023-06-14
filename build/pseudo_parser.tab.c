@@ -1158,7 +1158,7 @@ yyreduce:
     {
   case 2: /* expr: expr_high  */
 #line 49 "pseudo_parser.y"
-              { (yyval.text) = strdup((yyvsp[0].text)); }
+              { (yyval.text) = (yyvsp[0].text); }
 #line 1163 "build/pseudo_parser.tab.c"
     break;
 
@@ -1260,7 +1260,7 @@ yyreduce:
 
   case 26: /* stmt: assg_lhs '=' expr  */
 #line 86 "pseudo_parser.y"
-                      {}
+                      { fprintf(interFile, "%s = %s\n", (yyvsp[-2].text), (yyvsp[0].text)); /*free($1);*/ free((yyvsp[0].text));}
 #line 1265 "build/pseudo_parser.tab.c"
     break;
 

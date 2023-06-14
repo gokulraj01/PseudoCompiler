@@ -10,7 +10,7 @@
 #.* {}
 
     /* Number clause */
-[0-9]+ {
+([0-9]*\.[0-9]+|[0-9]+) {
     strncpy(yylval.text, yytext, 16);
     printf("NUM ");
     return NUM;

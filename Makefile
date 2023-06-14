@@ -2,10 +2,11 @@ REQ_FILES		= $(BUILD_DIR)/pseudo_parser.tab.c $(BUILD_DIR)/pseudo_defs.h $(BUILD
 COMPILER		= gcc
 EXT				= .c
 BUILD_DIR		= build
+EXEC_NAME		= pseudo2inter
 
 pseudo_run: $(REQ_FILES)
 	mkdir -p build
-	$(COMPILER) $(BUILD_DIR)/lex.yy.c $(BUILD_DIR)/pseudo_parser.tab.c -o pseudo_run -lfl
+	$(COMPILER) $(BUILD_DIR)/lex.yy.c $(BUILD_DIR)/pseudo_parser.tab.c -o $(EXEC_NAME) -lfl
 
 $(BUILD_DIR)/pseudo_parser.tab.c $(BUILD_DIR)/pseudo_defs.h: pseudo_parser.y
 	mkdir -p build
@@ -18,8 +19,8 @@ $(BUILD_DIR)/lex.yy.c: pseudo_lexer.l
 
 debug: $(REQ_FILES)
 	mkdir -p build
-	$(COMPILER) -g $(BUILD_DIR)/lex.yy.c $(BUILD_DIR)/pseudo_parser.tab.c -o pseudo_run -lfl
+	$(COMPILER) -g $(BUILD_DIR)/lex.yy.c $(BUILD_DIR)/pseudo_parser.tab.c -o $(EXEC_NAME) -lfl
 
 clean:
-	rm -r build
-	rm pseudo_run
+	rm -r $(BUILD_DIR)
+	rm $(EXEC_NAME)
