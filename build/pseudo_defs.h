@@ -64,14 +64,33 @@ extern int yydebug;
     IF = 265,                      /* IF  */
     ELIF = 266,                    /* ELIF  */
     ELSE = 267,                    /* ELSE  */
-    FI = 268                       /* FI  */
+    FI = 268,                      /* FI  */
+    WHILE = 269,                   /* WHILE  */
+    DO = 270,                      /* DO  */
+    DONE = 271,                    /* DONE  */
+    FOR = 272,                     /* FOR  */
+    FROM = 273,                    /* FROM  */
+    TO = 274,                      /* TO  */
+    SWITCH = 275,                  /* SWITCH  */
+    CASE = 276,                    /* CASE  */
+    ENDCASE = 277,                 /* ENDCASE  */
+    FILE_END = 278                 /* FILE_END  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef int YYSTYPE;
+union YYSTYPE
+{
+#line 22 "pseudo_parser.y"
+
+    char* text;
+
+#line 91 "build/pseudo_defs.h"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif

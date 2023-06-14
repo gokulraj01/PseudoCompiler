@@ -1,0 +1,22 @@
+enum NodeTypes{
+    START,
+    VALUE,
+    IF_NODE,
+    FOR_NODE,
+    WHILE_NODE,
+    EXPR_NODE,
+    CONDN_NODE
+};
+
+struct astNode{
+    enum NodeTypes type,
+    void *value,
+    struct astNode *left,
+    struct astNode *right
+};
+
+struct forNodeParams{
+    char *iterable,
+    double low,
+    double high
+};
