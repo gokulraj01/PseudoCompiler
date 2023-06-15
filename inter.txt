@@ -6,13 +6,19 @@ t3 = 2 + 3
 t4 = 4 * 5
 t5 = t3 / t4
 t6 = t5 % 6
-t6 = t6
-b = 12.22
-y = 3.14
-t7 = b + y
-z = t7
-t8 = b + 12.233
-t8 = t8
-t9 = b + 12
-t9 = t9
-c = 13
+a = t6
+t7 = a < 12
+assert t7 goto # label0
+# label1:
+t8 = b < 2
+assert t8 goto # label2
+# label3:
+t9 = 3 + b
+t10 = c < t9
+assert t10 goto # label4
+# label5:
+t11 = a + 1
+b = t11
+# label4
+# label2
+# label0
