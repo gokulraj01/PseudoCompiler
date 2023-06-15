@@ -7,18 +7,35 @@ t4 = 4 * 5
 t5 = t3 / t4
 t6 = t5 % 6
 a = t6
-t7 = a < 12
-assert t7 goto # label0
+b = 0
+t7 = a + b
+c = t7
+t8 = a < 12
+assert t8 goto # label0
 # label1:
-t8 = b < 2
-assert t8 goto # label2
+t9 = b < 2
+assert t9 goto # label2
 # label3:
-t9 = 3 + b
-t10 = c < t9
-assert t10 goto # label4
+t10 = 3 + b
+t11 = c < t10
+assert t11 goto # label4
 # label5:
-t11 = a + 1
-b = t11
+t12 = a + 1
+z = t12
 # label4
 # label2
 # label0
+
+Parsing file sample_code.txt...
+ID[x]  '='  '(' NUM  '+' NUM  ')'  '/'  '(' NUM  '*' NUM  ')' 
+ID[a]  '='  '('  '(' NUM  '+' NUM  ')'  '/'  '(' NUM  '*' NUM  ')'  ')'  '%' NUM 
+ID[b]  '=' NUM 
+ID[c]  '=' ID[a]  '+' ID[b] 
+IF ID[a]  '<' NUM  ':' 
+IF ID[b]  '<' NUM  ':' 
+IF ID[c]  '<'  '(' NUM  '+' ID[b]  ')'  ':' 
+ID[z]  '=' ID[a]  '+' NUM 
+FI 
+FI 
+FI 
+Parsing complete!!
